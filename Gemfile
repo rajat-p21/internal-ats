@@ -73,3 +73,6 @@ end
 
 gem 'cssbundling-rails'
 gem 'ransack'
+gem 'activestorage'
+gem 'rack-cors'
+gem "jsonapi-serializer", "~> 2.2"
