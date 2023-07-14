@@ -51,6 +51,27 @@ const ApplicantPage = () => {
             })
     }
 
+    const handleDeleteBtn = () => {
+        const confirmed = window.confirm('Are you sure you want to delete the profile?');
+
+        if(!confirmed) return;
+
+        fetch(applicantURL + `${id}`,{
+            method: 'DELETE'
+        })
+            .then((response) => {
+                if (response.ok) {
+                    console.log('Profile deletion success')
+                    navigate('/')
+                } else {
+                    console.log('Error deleting profile')
+                }
+            })
+            .catch((error) => {
+                console(`Error: ${error}`)
+            })
+    }
+
     useEffect(() => {
         fetchApplicantData(id)
     }, [])
@@ -80,7 +101,7 @@ const ApplicantPage = () => {
                             <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Edit Details
                             </button>
-                            <button className='btn btn-danger'>Delete Profile</button>
+                            <button className='btn btn-danger' onClick={handleDeleteBtn}>Delete Profile</button>
                         </div>
                         </div>
                     </div>

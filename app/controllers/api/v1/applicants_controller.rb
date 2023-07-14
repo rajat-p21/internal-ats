@@ -26,8 +26,21 @@ class Api::V1::ApplicantsController < ApplicationController
     end
 
     def show
+        @applicant = Applicant.find_by(id: params[:id])
+        if @applicant
+            render json: ApplicantSerializer.new(@applicant).serializable_hash[:data][:attributes], status: :ok
+        else
+            redirect_to root_path
+        end
+    end
+    
+    def destroy
         @applicant = Applicant.find(params[:id])
-        render json: ApplicantSerializer.new(@applicant).serializable_hash[:data][:attributes], status: :ok
+        if @applicant.destroy
+            render json: @applicant, status: :ok
+        else
+            render json: {data: @applicant.errors.full_messages, status: 'failure'}, status: :unprocessable_entity
+        end
     end
 
     def create
