@@ -1,4 +1,5 @@
 class Api::V1::ApplicantsController < ApplicationController
+    before_action :authenticate_admin!, except: [:index, :show]
     protect_from_forgery with: :null_session
     def index
         if params[:q].present?
