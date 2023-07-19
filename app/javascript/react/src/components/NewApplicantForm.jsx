@@ -25,14 +25,6 @@ const NewApplicantForm = () => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault()
-        // console.log(formField)
-        // const data = {
-        //     name: formField.name,
-        //     email: formField.email,
-        //     mobile: formField.mobile,
-        //     job_profile: formField.jobProfile,
-        //     last_status: formField.lastStatus
-        // }
         const data = new FormData()
         data.append('applicant[name]', event.target.name.value)
         data.append('applicant[email]', event.target.email.value)
@@ -40,10 +32,19 @@ const NewApplicantForm = () => {
         data.append('applicant[last_status]', event.target.lastStatus.value)
         data.append('applicant[job_profile]', event.target.jobProfile.value)
         data.append('applicant[notes]', 'Click to edit')
-        if(event.target.resume.files[0]) {
-            data.append('applicant[resume]', event.target.resume.files[0])
+        const file = event.target.resume.files[0]
+
+        if(!file) {
+            createForm(data)
+            return
         }
-        createForm(data)
+        else if(file.type ==='application/pdf') {
+            data.append('applicant[resume]', event.target.resume.files[0])
+            createForm(data)
+            return
+        } else {
+            alert('Please select a PDF file')
+        }
     }
 
     const createForm = (data) => {

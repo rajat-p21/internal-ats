@@ -7,11 +7,16 @@ const ApplicantCard = ({applicant}) => {
     const navigate = useNavigate();
     const applicantURL = `http://localhost:3000/api/v1/applicants/${applicant.id}` 
     const handleViewProfileButton = () => {
-        navigate(`applicant/${applicant.id}`)
+        window.open(`applicant/${applicant.id}`, '_blank', 'noreferrer')
+        // navigate(`applicant/${applicant.id}`)
+    }
+
+    const handleDownloadBtn = () => {
+        window.open(`/applicants/${applicant.id}/resume`, '_blank', 'noreferrer')
     }
 
     return (
-        <div className='card rounded-2 mt-3'>
+        <div className='card rounded-2 mt-3' style={{width: '34rem'}}>
             <div className='card-body d-flex' >
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQq6gaTf6N93kzolH98ominWZELW881HqCgw&usqp=CAU" width={180} className='img-fluid me-4' alt="profile pic" />
                 <div>
@@ -24,7 +29,7 @@ const ApplicantCard = ({applicant}) => {
                     </div>
                     <div className='column'>
                         <button type='button' className='btn btn-primary me-3' onClick={handleViewProfileButton}>View Profile</button>
-                        <button type='button' className='btn btn-secondary'>Download Resume</button>
+                        <button type='button' className='btn btn-secondary' onClick={handleDownloadBtn}>Download Resume</button>
                     </div>
                 </div>
             </div>

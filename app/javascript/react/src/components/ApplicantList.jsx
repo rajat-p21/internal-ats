@@ -53,7 +53,7 @@ const ApplicantList = () => {
     }, [])
 
     return (
-        <div>
+        <div className='container'>
             <div className='d-flex justify-content-around align-items-center'>
                 <button type="button" className="btn btn-primary mt-1 mb-1 me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Add New Applicant
@@ -77,9 +77,11 @@ const ApplicantList = () => {
                     </div>
                 </div>
             </div>
-            <div className='card-columns'>
+            <div className='row'>
                 { applicantList.length > 0 ? applicantList.map((applicant) =>
-                    <ApplicantCard applicant={applicant} key={applicant.id}/>
+                    <div key={applicant.id} id='cardItem' className="col-sm-6">
+                        <ApplicantCard applicant={applicant} />
+                    </div>  
                 ) : <ShowEmptyListMsg/>
                 } 
             </div>

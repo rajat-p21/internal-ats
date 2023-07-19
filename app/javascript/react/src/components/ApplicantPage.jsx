@@ -52,6 +52,10 @@ const ApplicantPage = () => {
             })
     }
 
+    const handleDownloadBtn = () => {
+        window.open(`/applicants/${id}/resume`, '_blank', 'noreferrer')
+    }
+
     const handleDeleteBtn = () => {
         const confirmed = window.confirm('Are you sure you want to delete the profile?');
 
@@ -98,7 +102,7 @@ const ApplicantPage = () => {
                         </ul>
                         <div className="card-body d-flex justify-content-evenly">
                             <button className='btn btn-primary' onClick={handleHomeBtn}>Home</button>
-                            <button className='btn btn-success'>Download Resume</button>
+                            <button className='btn btn-success' onClick={handleDownloadBtn}>Download Resume</button>
                             <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Edit Details
                             </button>
@@ -119,7 +123,7 @@ const ApplicantPage = () => {
                     </div>
                 </div>
                 <div className='justify-content-around align-items-center'>
-                    <h3>Resume Preview</h3>
+                    <h3 className='mb-2'>Resume Preview</h3>
                     <div>
                         <ShowPDF id={id} />
                         {/* <a href={applicantData.resume_url}>here</a> */}

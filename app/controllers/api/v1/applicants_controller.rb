@@ -28,14 +28,6 @@ class Api::V1::ApplicantsController < ApplicationController
 
     def show
         @applicant = Applicant.find_by(id: params[:id])
-        # respond_to do |format|
-        #     format.html
-        #     format.pdf do
-        #         resume_blob = @applicant.resume.download
-        #         response.headers['Content-Length'] = resume_blob.size.to_s
-        #         send_data resume_blob, filename: @applicant.resume.filename.to_s, type: 'application/pdf', disposition: 'inline'
-        #     end
-        # end
         if @applicant
 
             render json: ApplicantSerializer.new(@applicant).serializable_hash[:data][:attributes], status: :ok
