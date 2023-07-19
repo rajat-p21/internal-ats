@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+// import profilePic from '../../../../assets/images/profilepic.png'
 
 const ApplicantCard = ({applicant}) => {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ const ApplicantCard = ({applicant}) => {
     return (
         <div className='card rounded-2 mt-3' style={{width: '34rem'}}>
             <div className='card-body d-flex' >
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQq6gaTf6N93kzolH98ominWZELW881HqCgw&usqp=CAU" width={180} className='img-fluid me-4' alt="profile pic" />
+                <img src='https://storage.needpix.com/rsynced_images/avatar-1577909_1280.png' width={180} className='img-fluid me-4' alt="profile pic" />
                 <div>
                     <h5 className='card-title'>{applicant.name}</h5>
                     <h5 className='card-subtitle text-muted'>{applicant.job_profile}</h5>
