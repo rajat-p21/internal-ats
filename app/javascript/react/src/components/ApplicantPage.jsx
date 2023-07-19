@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import NoteEditor from './NoteEditor'
 import EditApplicantForm from './EditApplicantForm'
+import ShowPDF from './ShowPDF'
 
 const ApplicantPage = () => {
     
@@ -120,7 +121,8 @@ const ApplicantPage = () => {
                 <div className='justify-content-around align-items-center'>
                     <h3>Resume Preview</h3>
                     <div>
-                        {applicantData.resume_url}
+                        <ShowPDF id={id} />
+                        {/* <a href={applicantData.resume_url}>here</a> */}
                     </div>
                 </div>
             </div>

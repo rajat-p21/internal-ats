@@ -11,12 +11,12 @@ module Ats
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins '*' # Set this to the appropriate domain or a specific origin
-        resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
-      end
-    end
+    # config.middleware.insert_before 0, Rack::Cors do
+    #   allow do
+    #     origins '*' # Set this to the appropriate domain or a specific origin
+    #     resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
+    #   end
+    # end
 
     # Configuration for the application, engines, and railties goes here.
     #
