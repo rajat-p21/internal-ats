@@ -2,7 +2,7 @@ class Applicant < ApplicationRecord
 
     has_one_attached :resume
 
-    validates :name, presence: true, uniqueness: true
+    validates :name, presence: true
     validates :email, presence: true, uniqueness: true
     validates :mobile, presence: true, uniqueness: true
     validates :job_profile, presence: true

@@ -17,7 +17,7 @@ const ApplicantCard = ({applicant}) => {
     }
 
     return (
-        <div className='card rounded-2 mt-3' style={{width: '34rem'}}>
+        <div className='card rounded-2 mt-3 mx-auto' style={{width: '40rem'}}>
             <div className='card-body d-flex' >
                 <img src='https://storage.needpix.com/rsynced_images/avatar-1577909_1280.png' width={180} className='img-fluid me-4' alt="profile pic" />
                 <div>

@@ -19,6 +19,7 @@ const ApplicantList = () => {
             .then((response) => response.json())
             .then((data) => {
                 // console.log(data)
+                data.reverse()
                 setApplicantList(data)
             })
     }
@@ -62,7 +63,7 @@ const ApplicantList = () => {
                 Upload .csv file
                 </button>
                 <div className='input-group me-3 w-40'>
-                    <label className="input-group-text" htmlFor="inputGroupSelect01">Filter by Profile</label>
+                    <label className="input-group-text" htmlFor="inputGroupSelect01">Filter by Dept.</label>
                     <select value={filterOption} onChange={(event) => handleFilter(event)} className="form-select" id="inputGroupSelect01">
                         <option>All</option>
                         {jobProfileList.map((jobProfile) => (
@@ -71,7 +72,7 @@ const ApplicantList = () => {
                     </select>
                 </div> 
                 <div className="input-group w-25">
-                    <input type="text" value={searchField} onChange={(event) => handleSearchField(event)} className="form-control" placeholder="Search by name" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                    <input type="text" value={searchField} onChange={(event) => handleSearchField(event)} className="form-control" placeholder="Search by name or status" aria-label="Recipient's username" aria-describedby="basic-addon2" />
                     <div className="input-group-append">
                         <button className="btn btn-outline-primary" type="button" onClick={handleSearchClick}><i className="bi bi-search"></i></button>
                     </div>
@@ -79,7 +80,7 @@ const ApplicantList = () => {
             </div>
             <div className='row'>
                 { applicantList.length > 0 ? applicantList.map((applicant) =>
-                    <div key={applicant.id} id='cardItem' className="col-sm-6">
+                    <div key={applicant.id} id='cardItem' className='col-lg-10 mx-auto'>
                         <ApplicantCard applicant={applicant} />
                     </div>  
                 ) : <ShowEmptyListMsg/>

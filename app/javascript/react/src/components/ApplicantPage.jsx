@@ -84,12 +84,15 @@ const ApplicantPage = () => {
     return (
         <>
         <div>
-            <div className="container mt-4">
+            <div className="container">
+                <div className='d-flex align-items-center justify-content-center'>
+                    <h2>Candidate Page</h2>
+                </div>
                 <div className="row mb-2">
                     <div className="col me-2">
                         <div className="card">
                         <div className='d-flex'>
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQq6gaTf6N93kzolH98ominWZELW881HqCgw&usqp=CAU" className="img-fluid" width={180} alt="prifile pic"/>
+                            <img src="https://storage.needpix.com/rsynced_images/avatar-1577909_1280.png" className="img-fluid" width={180} alt="prifile pic"/>
                             <div className="card-body text-center align-self-center">
                                 <h2 className="card-title ">{applicantData.name}</h2>
                                 <h2 className="bg-warning rounded-2">&nbsp;{applicantData.job_profile}</h2>

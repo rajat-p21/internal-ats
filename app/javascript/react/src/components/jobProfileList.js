@@ -1,20 +1,15 @@
 const jobProfileList = [
-    {label: 'Software Developer', value: 0},
-    {label: 'Sales', value: 1},
-    {label: 'Customer Service', value: 2},
-    {label: 'Data Scientist', value: 3},
-    {label: 'Digital Marketing', value: 4},
-    {label: 'Technical Architect', value: 5},
-    {label: 'Tele Sales', value: 6},
-    {label: 'Content Writer', value: 7},
-    {label: 'Team Lead/Field Sales', value: 8},
-    {label: 'HR', value: 9},
-    {label: 'Finance', value: 10},
-    {label: 'Product Manager', value: 11},
-    {label: 'Project Manager', value: 12},
-    {label: 'UI', value: 13},
-    {label: 'UX', value: 14},
-    {label: 'Business Development', value: 15}
+    {label: 'IT', value: 0},
+    {label: 'Product', value: 1},
+    {label: 'Sales', value: 2},
+    {label: 'Demand', value: 3},
+    {label: 'HR', value: 4},
+    {label: 'Design', value: 5},
+    {label: 'Data Science', value: 6},
+    {label: 'Warehouse', value: 7},
+    {label: 'Finance', value: 8},
+    {label: 'Service', value: 9},
+    {label: 'Marketing', value: 10}
 ]
 
 export default jobProfileList

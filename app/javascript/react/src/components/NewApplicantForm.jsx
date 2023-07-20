@@ -109,7 +109,7 @@ const NewApplicantForm = () => {
                             </div> */}
 
 <                           div className="input-group mb-3">
-                                <label htmlFor="validationCustom04" className="input-group-text">Job Profile</label>
+                                <label htmlFor="validationCustom04" className="input-group-text">Department</label>
                                 <select value={formField.jobProfile} name='jobProfile' onChange={(event) => handleFormField(event)} className="form-select" id="validationCustom04" required>
                                 <option selected disabled value="">Choose...</option>
                                 {jobProfileList.map(jobProfile => (
