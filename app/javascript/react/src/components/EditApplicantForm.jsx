@@ -9,7 +9,7 @@ const EditApplicantForm = ({applicantData}) => {
     // console.log(applicantData)
     
     const [formField, setFormField] = useState({})
-    const applicantURL = `http://localhost:3000/api/v1/applicants/`
+    const applicantURL = `/api/v1/applicants/`
 
     const handleFormField = (event) => {
         setFormField({

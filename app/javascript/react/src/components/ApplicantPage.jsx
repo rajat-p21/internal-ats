@@ -8,7 +8,7 @@ import ShowPDF from './ShowPDF'
 
 const ApplicantPage = () => {
     
-    const applicantURL = `http://localhost:3000/api/v1/applicants/`
+    const applicantURL = `/api/v1/applicants/`
     const [applicantData, setApplicantData] = useState([])
     const { id } = useParams()
     const navigate = useNavigate()

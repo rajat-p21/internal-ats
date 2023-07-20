@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 const ApplicantCard = ({applicant}) => {
     const navigate = useNavigate();
-    const applicantURL = `http://localhost:3000/api/v1/applicants/${applicant.id}` 
+    const applicantURL = `/api/v1/applicants/${applicant.id}` 
     const handleViewProfileButton = () => {
         window.open(`applicant/${applicant.id}`, '_blank', 'noreferrer')
         // navigate(`applicant/${applicant.id}`)

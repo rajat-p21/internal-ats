@@ -9,7 +9,7 @@ import ShowEmptyListMsg from './ShowEmptyListMsg'
 const ApplicantList = () => {
 
     const [applicantList, setApplicantList] = useState([])
-    const applicantsURL = 'http://localhost:3000/api/v1/applicants'
+    const applicantsURL = '/api/v1/applicants'
 
     const [filterOption, setFilterOption] = useState('All')
     const [searchField, setSearchField] = useState('')

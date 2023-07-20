@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 const NoteEditor = ({id}) => {
     const [text, setText] = useState('');
     const [edit, setEdit] = useState(false);
-    const applicantURL = `http://localhost:3000/api/v1/applicants/`
+    const applicantURL = `/api/v1/applicants/`
 
     const fetchNotes = (id) => {
         fetch(applicantURL + `${id}`)
