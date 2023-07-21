@@ -2,18 +2,27 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+// import profilePic from '../../../../assets/images/profilepic.png'
 
 const ApplicantCard = ({applicant}) => {
     const navigate = useNavigate();
-    const applicantURL = `http://localhost:3000/api/v1/applicants/${applicant.id}` 
+    const applicantURL = `/api/v1/applicants/${applicant.id}` 
+
+    /* handle view profile button */
     const handleViewProfileButton = () => {
-        navigate(`applicant/${applicant.id}`)
+        window.open(`applicant/${applicant.id}`, '_blank', 'noreferrer')
+        // navigate(`applicant/${applicant.id}`)
+    }
+
+    /* handle download button */
+    const handleDownloadBtn = () => {
+        window.open(`/applicants/${applicant.id}/resume`, '_blank', 'noreferrer')
     }
 
     return (
-        <div className='card rounded-2 mt-3'>
+        <div className='card rounded-2 mt-3 mx-auto' style={{width: '40rem'}}>
             <div className='card-body d-flex' >
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQq6gaTf6N93kzolH98ominWZELW881HqCgw&usqp=CAU" width={180} className='img-fluid me-4' alt="profile pic" />
+                <img src='https://storage.needpix.com/rsynced_images/avatar-1577909_1280.png' width={180} className='img-fluid me-4' alt="profile pic" />
                 <div>
                     <h5 className='card-title'>{applicant.name}</h5>
                     <h5 className='card-subtitle text-muted'>{applicant.job_profile}</h5>
@@ -24,7 +33,7 @@ const ApplicantCard = ({applicant}) => {
                     </div>
                     <div className='column'>
                         <button type='button' className='btn btn-primary me-3' onClick={handleViewProfileButton}>View Profile</button>
-                        <button type='button' className='btn btn-secondary'>Download Resume</button>
+                        <button type='button' className='btn btn-secondary' onClick={handleDownloadBtn}>Download Resume</button>
                     </div>
                 </div>
             </div>

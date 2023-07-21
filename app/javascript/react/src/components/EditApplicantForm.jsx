@@ -3,18 +3,13 @@ import * as ReactDOM from 'react-dom'
 import { useState, useEffect } from 'react'
 import jobProfileList from './jobProfileList'
 import lastStatusList from './lastStatusList'
-import ShowServerErrors from './ShowServerErrors'
-import ShowSuccessMsg from './ShowSuccessMsg'
+import { useNavigate } from 'react-router-dom'
 
-const NewApplicantForm = () => {
-
-    const [formField, setFormField] = useState({
-        name: '', jobProfile: '', mobile: '', email: '', lastStatus: '', resume: '', notes: ''
-    })
-
-    const [isServerSideError, setIsServerSideError] = useState(false)
-    const [serverError,setServerError] = useState([])
-    const [isSubmitted, setIsSubmitted] = useState(false)
+const EditApplicantForm = ({applicantData}) => {
+    // console.log(applicantData)
+    
+    const [formField, setFormField] = useState({})
+    const applicantURL = `/api/v1/applicants/`
 
     /* handle all form fields */
     const handleFormField = (event) => {
@@ -27,75 +22,44 @@ const NewApplicantForm = () => {
     /* handle form submit */
     const handleFormSubmit = (event) => {
         event.preventDefault()
+        
         const data = new FormData()
-        data.append('applicant[name]', event.target.name.value)
-        data.append('applicant[email]', event.target.email.value)
-        data.append('applicant[mobile]', event.target.mobile.value)
+        if(event.target.name.value) data.append('applicant[name]', event.target.name.value)
+        if(event.target.email.value) data.append('applicant[email]', event.target.email.value)
+        if(event.target.mobile.value) data.append('applicant[mobile]', event.target.mobile.value)
         data.append('applicant[last_status]', event.target.lastStatus.value)
         data.append('applicant[job_profile]', event.target.jobProfile.value)
-        data.append('applicant[notes]', 'Click to edit')
-        const file = event.target.resume.files[0]
-
-        if(!file) {
-            createForm(data)
-            return
-        }
-        else if(file.type ==='application/pdf') {
-            data.append('applicant[resume]', event.target.resume.files[0])
-            createForm(data)
-            return
-        } else {
-            alert('Please select a PDF file')
-        }
+        updateForm(data)
     }
 
-    /* post form data via api call */
-    const createForm = (data) => {
-        fetch('api/v1/applicants', {
-            method: 'POST',
-            // headers: {
-            //     'Content-Type': 'application/json'
-            // },
+    /* patch data via api call  */
+    const updateForm = (data) => {
+        fetch(applicantURL + `${applicantData.id}`,{
+            method: 'PATCH',
             body: data
         })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log('success', data)
-            if(data.status === 'failure')
-            {
-                setIsServerSideError(true)
-                setServerError(data['data'])
-            } else {
-                setIsServerSideError(false)
-                setServerError([])
-                setIsSubmitted(true)
-                setFormField({
-                    name: '',
-                    email: '',
-                    mobile: '',
-                    jobProfile: 'Choose...',
-                    lastStatus: 'Choose...'
-                })
-            }
-        })
-        .catch((error) => {
-            console.log('error', error)
-        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+                location.reload()
+            })
     }
+
+
 
     return (
         <>
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-lg">
-                    <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">Add Applicant Details</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form onSubmit={(event) => handleFormSubmit(event)}>
-                        <div className="modal-body">
-                            { isServerSideError && <ShowServerErrors errors={serverError} /> }
-                            { isSubmitted && <ShowSuccessMsg /> }
+            <div className="modal-dialog">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">Edit Applicant Details</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form onSubmit={(event) => handleFormSubmit(event)}>
+                    <div className="modal-body">
+                            {/* { isServerSideError && <ShowServerErrors errors={serverError} /> }
+                            { isSubmitted && <ShowSuccessMsg /> } */}
                             <div className="input-group mb-3">
                                 <span className="input-group-text" id="inputGroup-sizing-default">Full Name</span>
                                 <input type="text" name='name' value={formField.name} onChange={(event) => handleFormField(event)} className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
@@ -111,7 +75,7 @@ const NewApplicantForm = () => {
                             </select>
                             </div> */}
 
-<                           div className="input-group mb-3">
+                            <div className="input-group mb-3">
                                 <label htmlFor="validationCustom04" className="input-group-text">Department</label>
                                 <select value={formField.jobProfile} name='jobProfile' onChange={(event) => handleFormField(event)} className="form-select" id="validationCustom04" required>
                                 <option selected disabled value="">Choose...</option>
@@ -150,23 +114,17 @@ const NewApplicantForm = () => {
                                 ))}
                                 </select>
                             </div>
-
-                            <div className="input-group mb-3">
-                                <label className="input-group-text" htmlFor="inputGroupFile01">Upload Resume</label>
-                                <input type="file" value={formField.resume} name='resume' className="form-control" id="inputGroupFile01" onChange={(event) => handleFormField(event)} />
-                            </div>
-                            
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" className="btn btn-outline-success">Submit</button>
-                        </div>
-                    </form>
                     </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" className="btn btn-success">Save changes</button>
+                    </div>
+                </form>
                 </div>
+            </div>
             </div>
         </>
     )
 }
 
-export default NewApplicantForm
+export default EditApplicantForm
