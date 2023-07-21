@@ -14,6 +14,7 @@ const ApplicantList = () => {
     const [filterOption, setFilterOption] = useState('All')
     const [searchField, setSearchField] = useState('')
 
+    /* fetch all applicant list */
     const fetchApplicantList = () => {
         fetch(applicantsURL)
             .then((response) => response.json())
@@ -24,6 +25,7 @@ const ApplicantList = () => {
             })
     }
 
+    /* handle filter functionality */
     const handleFilter = (event) => {
         setApplicantList([])
         setFilterOption(event.target.value)
@@ -35,10 +37,12 @@ const ApplicantList = () => {
             })
     }
 
+    /* handle handle search field (input) */
     const handleSearchField = (event) => {
         setSearchField(event.target.value)
     }
 
+    /* fetch search applicant list (if any) */
     const handleSearchClick = () => {
         setApplicantList([])
         fetch(applicantsURL + `?q=${searchField}`)
@@ -83,10 +87,10 @@ const ApplicantList = () => {
                     <div key={applicant.id} id='cardItem' className='col-lg-10 mx-auto'>
                         <ApplicantCard applicant={applicant} />
                     </div>  
-                ) : <ShowEmptyListMsg/>
+                ) : <ShowEmptyListMsg/> /* show msg if no result for search and filter  */
                 } 
             </div>
-            <NewApplicantForm />
+            <NewApplicantForm /> 
         </div>
     )
 }

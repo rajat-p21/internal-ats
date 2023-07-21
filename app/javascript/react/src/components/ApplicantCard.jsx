@@ -7,11 +7,14 @@ import { useNavigate } from 'react-router-dom'
 const ApplicantCard = ({applicant}) => {
     const navigate = useNavigate();
     const applicantURL = `/api/v1/applicants/${applicant.id}` 
+
+    /* handle view profile button */
     const handleViewProfileButton = () => {
         window.open(`applicant/${applicant.id}`, '_blank', 'noreferrer')
         // navigate(`applicant/${applicant.id}`)
     }
 
+    /* handle download button */
     const handleDownloadBtn = () => {
         window.open(`/applicants/${applicant.id}/resume`, '_blank', 'noreferrer')
     }

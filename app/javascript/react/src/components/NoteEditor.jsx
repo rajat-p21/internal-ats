@@ -7,6 +7,7 @@ const NoteEditor = ({id}) => {
     const [edit, setEdit] = useState(false);
     const applicantURL = `/api/v1/applicants/`
 
+    /* fetch the current notes on loading */
     const fetchNotes = (id) => {
         fetch(applicantURL + `${id}`)
             .then((response) => response.json())
@@ -16,14 +17,17 @@ const NoteEditor = ({id}) => {
             })
     }
 
+    /* handle toggle between input field & paragraph field */
     const handleToggleEdit = () => {
         setEdit(true);
     }
 
+    /* handle text area of note editor */
     const handleTextArea = (event) => {
         setText(event.target.value);
     }
 
+    /* handle submit */
     const handleSubmit = () => {
         const data = new FormData()
         data.append('applicant[notes]', text)
@@ -31,6 +35,7 @@ const NoteEditor = ({id}) => {
         setEdit(false)
     }
 
+    /* patch the input data via api call */
     const updateNotes = (data) => {
         fetch(applicantURL + `${id}`,{
             method: 'PATCH',

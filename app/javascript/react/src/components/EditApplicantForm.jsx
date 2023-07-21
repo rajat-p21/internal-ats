@@ -11,6 +11,7 @@ const EditApplicantForm = ({applicantData}) => {
     const [formField, setFormField] = useState({})
     const applicantURL = `/api/v1/applicants/`
 
+    /* handle all form fields */
     const handleFormField = (event) => {
         setFormField({
             ...formField,
@@ -18,6 +19,7 @@ const EditApplicantForm = ({applicantData}) => {
         })
     }
 
+    /* handle form submit */
     const handleFormSubmit = (event) => {
         event.preventDefault()
         
@@ -30,6 +32,7 @@ const EditApplicantForm = ({applicantData}) => {
         updateForm(data)
     }
 
+    /* patch data via api call  */
     const updateForm = (data) => {
         fetch(applicantURL + `${applicantData.id}`,{
             method: 'PATCH',

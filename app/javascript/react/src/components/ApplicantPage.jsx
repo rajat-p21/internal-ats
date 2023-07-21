@@ -15,6 +15,8 @@ const ApplicantPage = () => {
     const [date,setDate] = useState('')
     const [time,setTime] = useState('')
 
+
+    /* convert updated_at string to date & time */
     const ConvertTime = (str) => {
         // Input string
         const inputString = str;
@@ -34,14 +36,14 @@ const ApplicantPage = () => {
         // Output
         setDate(dateStr)
         setTime(timeStr)
-        // console.log("Date:", dateStr);
-        // console.log("Time (UTC+5:30):", timeStr);
     }
 
+    /* handle home button to go back */
     const handleHomeBtn = () => {
         navigate('/')
     }
 
+    /* fetch applicant data by id */
     const fetchApplicantData = (id) => {
         fetch(applicantURL + `${id}`)
             .then((response) => response.json())
@@ -52,10 +54,12 @@ const ApplicantPage = () => {
             })
     }
 
+    /* handle download button */
     const handleDownloadBtn = () => {
         window.open(`/applicants/${id}/resume`, '_blank', 'noreferrer')
     }
 
+    /* handle delete profile button */
     const handleDeleteBtn = () => {
         const confirmed = window.confirm('Are you sure you want to delete the profile?');
 

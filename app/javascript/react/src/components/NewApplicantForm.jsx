@@ -16,6 +16,7 @@ const NewApplicantForm = () => {
     const [serverError,setServerError] = useState([])
     const [isSubmitted, setIsSubmitted] = useState(false)
 
+    /* handle all form fields */
     const handleFormField = (event) => {
         setFormField({
             ...formField,
@@ -23,6 +24,7 @@ const NewApplicantForm = () => {
         })
     }
 
+    /* handle form submit */
     const handleFormSubmit = (event) => {
         event.preventDefault()
         const data = new FormData()
@@ -47,6 +49,7 @@ const NewApplicantForm = () => {
         }
     }
 
+    /* post form data via api call */
     const createForm = (data) => {
         fetch('api/v1/applicants', {
             method: 'POST',
